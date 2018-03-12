@@ -17,4 +17,4 @@ You can find that part in the `WpfApplicationGUI` directory.
 
 - [X] **Graphical User Interface for the client**
 - [ ] Asynchronous accesses to the WS
-- [X] Cache in the IWS
+- [X] **Cache in the IWS**
