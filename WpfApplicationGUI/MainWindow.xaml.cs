@@ -55,16 +55,17 @@ namespace WpfApplicationGUI
             } else
             {
                 stations = cacheForStations[Name.Text.ToLower()].GetStations();
+                StationView.ItemsSource = stations;
             }
-            StationView.ItemsSource = stations;
         }
 
         // Method to create and use the object designed to make the request to the JCDecaux API
         // It also stores the new informations in th cache with the timestamp
-        private void getInformationsFromJCDecaux()
+        private async void getInformationsFromJCDecaux()
         {
+            Validate.IsEnabled = false;
             ServiceJCDecauxReference.Service1Client service = new ServiceJCDecauxReference.Service1Client();
-            stations = service.GetStationsOfContractNamed(Name.Text);
+            stations = await service.GetStationsOfContractNamedAsync(Name.Text);
             cacheForStations.Add(Name.Text.ToLower(), new ContractInformations(stations, DateTime.Now));
             if (stations.Length != 0)
             {
@@ -74,6 +75,8 @@ namespace WpfApplicationGUI
             {
                 modifyVisibility(Visibility.Hidden);
             }
+            StationView.ItemsSource = stations;
+            Validate.IsEnabled = true;
         }
 
         // Method used to search a specific station with the station search bar
