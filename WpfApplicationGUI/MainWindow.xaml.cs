@@ -20,14 +20,21 @@ namespace WpfApplicationGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        ServiceReference1.Station[] stations;
+        ServiceJCDecauxReference.Station[] stations;
+
+        // Cache to avoid multiple requests on the JCDecaux API for the same information
+        Dictionary<string, ContractInformations> cacheForStations;
 
         public MainWindow()
         {
             InitializeComponent();
             modifyVisibility(Visibility.Hidden);
+            cacheForStations = new Dictionary<string, ContractInformations>();
         }
 
+        // Hide or show the search bar for the station
+        // When the user has entered a valid contract, the stations are displayed and the search bar appeared
+        // It disappeared when the contract search found nothing
         public void modifyVisibility(Visibility visibility)
         {
             Station.Visibility = visibility;
@@ -35,49 +42,58 @@ namespace WpfApplicationGUI
             SearchStation.Visibility = visibility;
         }
 
+        // Method used when the user search a contract in the search bar
+        // It calls the method for the request if necessary and display the informations found
         private void Search_City(object sender, RoutedEventArgs e)
         {
-            ServiceReference1.Service1Client service = new ServiceReference1.Service1Client();
-            stations = service.GetVelibOfCity(Name.Text);
-            if (stations.Length == 0)
+            // If the information searched is not in the cache OR if the information is in the cache but is outdated
+            // The system makes a new request and refresh the cache
+            if (!cacheForStations.ContainsKey(Name.Text.ToLower()) || !cacheForStations[Name.Text.ToLower()].isInformationsTimeValid())
             {
-
-                stations[0] = errorStationSearch();
+                cacheForStations.Remove(Name.Text.ToLower());
+                getInformationsFromJCDecaux();
+            } else
+            {
+                stations = cacheForStations[Name.Text.ToLower()].GetStations();
             }
             StationView.ItemsSource = stations;
-            modifyVisibility(Visibility.Visible);
         }
 
+        // Method to create and use the object designed to make the request to the JCDecaux API
+        // It also stores the new informations in th cache with the timestamp
+        private void getInformationsFromJCDecaux()
+        {
+            ServiceJCDecauxReference.Service1Client service = new ServiceJCDecauxReference.Service1Client();
+            stations = service.GetStationsOfContractNamed(Name.Text);
+            cacheForStations.Add(Name.Text.ToLower(), new ContractInformations(stations, DateTime.Now));
+            if (stations.Length != 0)
+            {
+                modifyVisibility(Visibility.Visible);
+            }
+            else
+            {
+                modifyVisibility(Visibility.Hidden);
+            }
+        }
+
+        // Method used to search a specific station with the station search bar
+        // The bar appeared when it is necessary 
+        // This method allows to find every station in the actual contract containing the name typed by the user 
         private void Search_Station(object sender, RoutedEventArgs e)
         {
             if (stations != null)
             {
-                List<ServiceReference1.Station> foundStations = new List<ServiceReference1.Station>();
+                List<ServiceJCDecauxReference.Station> foundStations = new List<ServiceJCDecauxReference.Station>();
                 String search = StationName.Text;
-                foreach (ServiceReference1.Station station in stations)
+                foreach (ServiceJCDecauxReference.Station station in stations)
                 {
                     if (station.name.ToLower().Contains(search))
                     {
                         foundStations.Add(station);
                     }
                 }
-                if (foundStations.Count == 0)
-                {
-                    
-                    foundStations.Add(errorStationSearch());
-                }
                 StationView.ItemsSource = foundStations;
             }
-        }
-
-        private ServiceReference1.Station errorStationSearch()
-        {
-            ServiceReference1.Station emptyStation = stations.Last();
-            emptyStation.name = "No station found for your search";
-            emptyStation.status = "";
-            emptyStation.available_bike_stands = 0;
-            emptyStation.available_bikes = 0;
-            return emptyStation;
         }
     }
 }
