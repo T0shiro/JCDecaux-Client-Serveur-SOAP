@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WcfApplicationVelib
 {
@@ -14,7 +15,7 @@ namespace WcfApplicationVelib
     {
 
         [OperationContract]
-        List<Station> GetStationsOfContractNamed(string cityName);
+        Task<List<Station>> GetStationsOfContractNamed(string cityName);
     }
 
     [DataContract]
