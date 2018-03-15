@@ -18,7 +18,7 @@ This system has 2 resource files :
 
 *Note :* More information about the cache in *Details on the cache extension* below
 
-⚠ To use my solution, you have to create this 2 files in the `WcfApplicationVelib` directory. ⚠
+⚠ **To use my solution, you have to create this 2 files in the `WcfApplicationVelib` directory.** ⚠  
 To do that, you need your own JCDecaux API key.
 
 ### Get an API key for JCDecaux

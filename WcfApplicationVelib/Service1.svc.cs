@@ -24,11 +24,14 @@ namespace WcfApplicationVelib
             // The system makes a new request and refreshs the cache
             if (!cacheForStations.ContainsKey(cityName) || !cacheForStations[cityName].isInformationsTimeValid())
             {
+                // If the information is in the cache, than it is outdated
                 if (cacheForStations.ContainsKey(cityName))
                 {
+                    // So we delete it from the cache
                     cacheForStations.Remove(cityName);
                     System.Diagnostics.Debug.WriteLine("[LOG] Delete contract "+cityName+" from the cache because outdated");
                 }
+                // Make request to the JCDecaux API
                 try
                 {
                     var city = cityName;
