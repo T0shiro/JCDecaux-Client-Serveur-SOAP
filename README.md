@@ -27,11 +27,18 @@ You can find that part in the `WpfApplicationGUI` directory.
 
 - [ ] Not Done
 
+## Details on the UI extension
+
+When the user launch the system, first he has to choose his contract, so his city in the scroll menu and click on **OK** button.
+The button is blocked during the request made to JCDecaux API.
+When the request is finished, the stations are displayed and a new field appears at the bottom of the UI.
+A search bar appears to simplify the research of a specific station.
+
 ## Details on the cache extension
 
-The cache stores each request done by the user.
-The limit time for the validity of the data is 5 minutes.
-Each time the user asks for a specific contract, the system checks in the cache if the request has already be done before.
+The cache stores each request done by the user.  
+The limit time for the validity of the data is **5 minutes**.
+Each time the user asks for a specific contract, the system checks in the cache if the request has already be done before.  
 Two cases here : 
 - The user has never asked for this contract, so the cache doesn't have informations about it.
 The system makes the request to the JCDecaux API.
@@ -45,5 +52,8 @@ To do that, the system have a class `ContractInformations` that contains :
 - the list of stations of the contract
 - a `timestamp` parameter to store when the request has been done
 - a method ``isInformationsTimeValid()`` that checks the difference between the actual time and the timestamp
+
+*Note :* To modify the limit time of 5 minutes, change the variable `dataValidTime` in the `ContractInformations` class.
+The value is in seconds (so for now it's 300).
 
  
