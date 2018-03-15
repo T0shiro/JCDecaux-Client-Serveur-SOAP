@@ -20,22 +20,21 @@ namespace WpfApplicationGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Collection of the actual stations displayed in the UI
         ServiceJCDecauxReference.Station[] stations;
 
+        // Distant service of the server to make the requests to the JCDecaux API 
         ServiceJCDecauxReference.Service1Client service;
-
-        // Cache to avoid multiple requests on the JCDecaux API for the same information
-        Dictionary<string, ContractInformations> cacheForStations;
 
         public MainWindow()
         {
             InitializeComponent();
             service = new ServiceJCDecauxReference.Service1Client();
             modifyVisibility(Visibility.Hidden);
-            cacheForStations = new Dictionary<string, ContractInformations>();
             setUpContracts();
         }
 
+        // Method to get all contract's names from JCDecaux API, sort them in alphabetic order, and display them on the scroll box
         private async void setUpContracts()
         {
             List<string> tmp = (await service.GetContractsAsync()).ToList();
@@ -44,8 +43,7 @@ namespace WpfApplicationGUI
         }
 
         // Hide or show the search bar for the station
-        // When the user has entered a valid contract, the stations are displayed and the search bar appeared
-        // It disappeared when the contract search found nothing
+        // When the user has choosed a contract, the stations are displayed and the search bar appeared
         public void modifyVisibility(Visibility visibility)
         {
             Station.Visibility = visibility;
@@ -53,38 +51,12 @@ namespace WpfApplicationGUI
             SearchStation.Visibility = visibility;
         }
 
-        // Method used when the user search a contract in the search bar
-        // It calls the method for the request if necessary and display the informations found
-        private void Search_City(object sender, RoutedEventArgs e)
-        {
-            // If the information searched is not in the cache OR if the information is in the cache but is outdated
-            // The system makes a new request and refresh the cache
-            if (!cacheForStations.ContainsKey(Name.Text.ToLower()) || !cacheForStations[Name.Text.ToLower()].isInformationsTimeValid())
-            {
-                cacheForStations.Remove(Name.Text.ToLower());
-                getInformationsFromJCDecaux();
-            } else
-            {
-                stations = cacheForStations[Name.Text.ToLower()].GetStations();
-                StationView.ItemsSource = stations;
-            }
-        }
-
-        // Method to create and use the object designed to make the request to the JCDecaux API
-        // It also stores the new informations in th cache with the timestamp
-        private async void getInformationsFromJCDecaux()
+        // Method used when the user selects a contract in the scroll menu and clicks on the Ok button
+        private async void Search_City(object sender, RoutedEventArgs e)
         {
             Validate.IsEnabled = false;
             stations = await service.GetStationsOfContractNamedAsync(Name.Text);
-            cacheForStations.Add(Name.Text.ToLower(), new ContractInformations(stations, DateTime.Now));
-            if (stations.Length != 0)
-            {
-                modifyVisibility(Visibility.Visible);
-            }
-            else
-            {
-                modifyVisibility(Visibility.Hidden);
-            }
+            modifyVisibility(Visibility.Visible);
             StationView.ItemsSource = stations;
             Validate.IsEnabled = true;
         }

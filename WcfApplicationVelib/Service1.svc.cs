@@ -17,19 +17,34 @@ namespace WcfApplicationVelib
     // REMARQUE : pour lancer le client test WCF afin de tester ce service, sélectionnez Service1.svc ou Service1.svc.cs dans l'Explorateur de solutions et démarrez le débogage.
     public class Service1 : IService1
     {
+        // Cache to avoid multiple requests on the JCDecaux API for the same information
+        Dictionary<string, ContractInformations> cacheForStations = new Dictionary<string, ContractInformations>();
+
         public async Task<List<Station>> GetStationsOfContractNamed(string cityName)
         {
             List<Station> stations;
 
-            try
+            // If the information searched is not in the cache OR if the information is in the cache but is outdated
+            // The system makes a new request and refreshs the cache
+            if (!cacheForStations.ContainsKey(cityName) || !cacheForStations[cityName].isInformationsTimeValid())
             {
-                var city = cityName;
-                string response = await makeRequest($"https://api.jcdecaux.com/vls/v1/stations?contract={city}&apiKey=b132038dfe4180ef1a9fc6eeac3ceec580503a57");
-                stations = JsonConvert.DeserializeObject<List<Station>>(response);
+                cacheForStations.Remove(cityName);
+                try
+                {
+                    var city = cityName;
+                    string response = await makeRequest($"https://api.jcdecaux.com/vls/v1/stations?contract={city}&apiKey=b132038dfe4180ef1a9fc6eeac3ceec580503a57");
+                    stations = JsonConvert.DeserializeObject<List<Station>>(response);
+                    cacheForStations.Add(cityName, new ContractInformations(stations.ToArray(), DateTime.Now));
+                }
+                catch (WebException e)
+                {
+                    stations = new List<Station>();
+                }
             }
-            catch (WebException e)
+            // If the information is in the cache and not outdated, the system gets the informations on the cache
+            else
             {
-                stations = new List<Station>();
+                stations = cacheForStations[cityName].GetStations().ToList();
             }
             return stations;
         }
