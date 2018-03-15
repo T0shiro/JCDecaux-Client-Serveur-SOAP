@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace WcfApplicationVelib
 {
     internal class ContractInformations
     {
-        // Number of seconds when the informations is valid in the cache (here 5 minutes)
+        // Number of seconds when the informations is valid in the cache
         // When the time is passed, the contract data has to be refreshed when the user asked for it
-        private static readonly int dataValidTime = 300;
+        // Stored in the ressource file cache_refresh_time.txt at the root of WcfApplicationVelib
+        private static readonly int DATA_VALID_TIME = Int32.Parse(WcfApplicationVelib.Properties.Resources.cache_refresh_time);
 
         private Station[] stations;
         private DateTime timestamp;
@@ -25,7 +22,7 @@ namespace WcfApplicationVelib
         public bool isInformationsTimeValid()
         {
             TimeSpan t = DateTime.Now - timestamp;
-            return t.TotalSeconds < dataValidTime;
+            return t.TotalSeconds < DATA_VALID_TIME;
         }
 
         public Station[] GetStations()
