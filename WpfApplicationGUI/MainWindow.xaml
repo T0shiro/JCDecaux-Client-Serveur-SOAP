@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplicationGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <ComboBox Name="Name" Margin="41,15,90,0" VerticalAlignment="Top" />
-        <Label Content="City:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
+        Title="JCDecaux Velib" Height="351" Width="670.667"
+        ResizeMode="NoResize">
+    <Grid Margin="0,0,-6,0">
+        <ComboBox Name="Name" Margin="67,15,101,0" VerticalAlignment="Top" />
+        <Label Content="Contract:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
                RenderTransformOrigin="0.408,13.096" />
         <ListView Name="StationView" HorizontalAlignment="Left" Height="247" Margin="10,41,0,0" VerticalAlignment="Top"
-                  Width="497">
+                  Width="636">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Station Name" DisplayMemberBinding="{Binding Path=name}" />
@@ -21,10 +22,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Name="Validate" Content="OK" HorizontalAlignment="Left" Margin="432,15,0,0" VerticalAlignment="Top" Width="75" Click="Search_City"/>
+        <Button Name="Validate" Content="OK" HorizontalAlignment="Left" Margin="575,15,0,0" VerticalAlignment="Top" Width="71" Click="Search_City" RenderTransformOrigin="-0.04,0.75" Height="21"/>
         <Label Name="Station" Content="Station :" HorizontalAlignment="Left" Margin="10,288,0,0" VerticalAlignment="Top"
             RenderTransformOrigin="0.408,13.096" Width="52" />
-        <TextBox Name="StationName" Margin="67,291,356,0" TextWrapping="Wrap" VerticalAlignment="Top" />
-        <Button Name="SearchStation" Content="Search" HorizontalAlignment="Left" Margin="172,291,0,0" VerticalAlignment="Top" Width="75" Click="Search_Station"/>
+        <TextBox Name="StationName" Margin="67,291,101,0" TextWrapping="Wrap" VerticalAlignment="Top" />
+        <Button Name="SearchStation" Content="Search" HorizontalAlignment="Left" Margin="575,291,0,0" VerticalAlignment="Top" Width="71" Click="Search_Station" RenderTransformOrigin="2.053,0.65" Height="18"/>
     </Grid>
 </Window>
