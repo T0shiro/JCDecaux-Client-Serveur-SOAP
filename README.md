@@ -18,3 +18,11 @@ You can find that part in the `WpfApplicationGUI` directory.
 - [X] **Graphical User Interface for the client**
 - [X] **Asynchronous accesses to the WS**
 - [X] **Cache in the IWS**
+
+### Monitoring
+
+[ ] Not Done
+
+### Deployment
+
+[ ] Not Done

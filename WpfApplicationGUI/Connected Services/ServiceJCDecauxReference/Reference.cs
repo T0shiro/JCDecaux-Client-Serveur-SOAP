@@ -131,6 +131,12 @@ namespace WpfApplicationGUI.ServiceJCDecauxReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetStationsOfContractNamed", ReplyAction="http://tempuri.org/IService1/GetStationsOfContractNamedResponse")]
         System.Threading.Tasks.Task<WpfApplicationGUI.ServiceJCDecauxReference.Station[]> GetStationsOfContractNamedAsync(string cityName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetContracts", ReplyAction="http://tempuri.org/IService1/GetContractsResponse")]
+        string[] GetContracts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetContracts", ReplyAction="http://tempuri.org/IService1/GetContractsResponse")]
+        System.Threading.Tasks.Task<string[]> GetContractsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -166,6 +172,14 @@ namespace WpfApplicationGUI.ServiceJCDecauxReference {
         
         public System.Threading.Tasks.Task<WpfApplicationGUI.ServiceJCDecauxReference.Station[]> GetStationsOfContractNamedAsync(string cityName) {
             return base.Channel.GetStationsOfContractNamedAsync(cityName);
+        }
+        
+        public string[] GetContracts() {
+            return base.Channel.GetContracts();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetContractsAsync() {
+            return base.Channel.GetContractsAsync();
         }
     }
 }

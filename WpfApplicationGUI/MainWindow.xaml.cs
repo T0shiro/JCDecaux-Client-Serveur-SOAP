@@ -22,14 +22,25 @@ namespace WpfApplicationGUI
     {
         ServiceJCDecauxReference.Station[] stations;
 
+        ServiceJCDecauxReference.Service1Client service;
+
         // Cache to avoid multiple requests on the JCDecaux API for the same information
         Dictionary<string, ContractInformations> cacheForStations;
 
         public MainWindow()
         {
             InitializeComponent();
+            service = new ServiceJCDecauxReference.Service1Client();
             modifyVisibility(Visibility.Hidden);
             cacheForStations = new Dictionary<string, ContractInformations>();
+            setUpContracts();
+        }
+
+        private async void setUpContracts()
+        {
+            List<string> tmp = (await service.GetContractsAsync()).ToList();
+            tmp.Sort();
+            Name.ItemsSource = tmp;
         }
 
         // Hide or show the search bar for the station
@@ -64,7 +75,6 @@ namespace WpfApplicationGUI
         private async void getInformationsFromJCDecaux()
         {
             Validate.IsEnabled = false;
-            ServiceJCDecauxReference.Service1Client service = new ServiceJCDecauxReference.Service1Client();
             stations = await service.GetStationsOfContractNamedAsync(Name.Text);
             cacheForStations.Add(Name.Text.ToLower(), new ContractInformations(stations, DateTime.Now));
             if (stations.Length != 0)

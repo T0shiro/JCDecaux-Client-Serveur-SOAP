@@ -16,6 +16,9 @@ namespace WcfApplicationVelib
 
         [OperationContract]
         Task<List<Station>> GetStationsOfContractNamed(string cityName);
+
+        [OperationContract]
+        Task<List<string>> GetContracts();
     }
 
     [DataContract]
