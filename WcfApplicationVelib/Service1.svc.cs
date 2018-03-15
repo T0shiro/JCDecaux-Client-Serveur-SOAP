@@ -18,7 +18,7 @@ namespace WcfApplicationVelib
     public class Service1 : IService1
     {
         // Cache to avoid multiple requests on the JCDecaux API for the same information
-        Dictionary<string, ContractInformations> cacheForStations = new Dictionary<string, ContractInformations>();
+        private static Dictionary<string, ContractInformations> cacheForStations = new Dictionary<string, ContractInformations>();
 
         public async Task<List<Station>> GetStationsOfContractNamed(string cityName)
         {
@@ -28,13 +28,23 @@ namespace WcfApplicationVelib
             // The system makes a new request and refreshs the cache
             if (!cacheForStations.ContainsKey(cityName) || !cacheForStations[cityName].isInformationsTimeValid())
             {
-                cacheForStations.Remove(cityName);
+                if (!cacheForStations[cityName].isInformationsTimeValid())
+                {
+                    cacheForStations.Remove(cityName);
+                    System.Diagnostics.Debug.WriteLine("[LOG] Delete information for the contract "+cityName+" in the cache because outdated information");
+                } else
+                {
+                    System.Diagnostics.Debug.WriteLine("[LOG] Information for the contract "+cityName+" not stored in the cache");
+                }
                 try
                 {
                     var city = cityName;
                     string response = await makeRequest($"https://api.jcdecaux.com/vls/v1/stations?contract={city}&apiKey=b132038dfe4180ef1a9fc6eeac3ceec580503a57");
                     stations = JsonConvert.DeserializeObject<List<Station>>(response);
-                    cacheForStations.Add(cityName, new ContractInformations(stations.ToArray(), DateTime.Now));
+                    DateTime now = DateTime.Now;
+                    cacheForStations.Add(cityName, new ContractInformations(stations.ToArray(), now));
+                    System.Diagnostics.Debug.WriteLine("[LOG] Contract "+cityName+" stored in cache at "+now);
+                    System.Diagnostics.Debug.WriteLine("[LOG] Cache size " + cacheForStations.LongCount() +" "+cacheForStations.GetHashCode());
                 }
                 catch (WebException e)
                 {
@@ -44,6 +54,7 @@ namespace WcfApplicationVelib
             // If the information is in the cache and not outdated, the system gets the informations on the cache
             else
             {
+                System.Diagnostics.Debug.WriteLine("[LOG] Contract " + cityName + " not in cache. Request is performed");
                 stations = cacheForStations[cityName].GetStations().ToList();
             }
             return stations;

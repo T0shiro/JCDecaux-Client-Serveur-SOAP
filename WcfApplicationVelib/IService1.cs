@@ -29,8 +29,6 @@ namespace WcfApplicationVelib
         [DataMember]
         public string status { get; set; }
         [DataMember]
-        public int bike_stands { get; set; }
-        [DataMember]
         public int available_bike_stands { get; set; }
         [DataMember]
         public int available_bikes { get; set; }
