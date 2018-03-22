@@ -5,10 +5,12 @@ An intermediary Web service (IWS) between the Velib WS and some WS client
 ## Project structure
 
 This project have two different parts :
-- An **Intermediary Web service** exposing a WS-SOAP API to access to the Velib Web service from [**JCDecaux**](https://developer.jcdecaux.com/#/login?page=getstarted)
+- An **Intermediary Web service** exposing a WS-SOAP API to access to the Velib Web service from [**JCDecaux**](https://developer.jcdecaux.com/#/login?page=getstarted)  
 You can find that part in the `WcfApplicationVelib` directory.
-- A **client with a UI** connected to the IWS which request and display the informations about JCDecaux Velibs.
+- A **client with a UI** connected to the IWS which request and display information about JCDecaux Velibs.  
 You can find that part in the `WpfApplicationGUI` directory.
+- A **console client** connected to the IWS which request and display information about JCDecaux Velibs.  
+You can find that part in the `ConsoleApplication` directory.
 
 ## Resource files
 
@@ -23,6 +25,14 @@ To do that, you need your own JCDecaux API key.
 
 ### Get an API key for JCDecaux
 In order to use the **JCDecaux API**, you need to have an API key delivered after subscription on [**their website**](https://developer.jcdecaux.com/#/signup).
+
+## Available commands for the client
+
+For the console client, here are the available commands :
+- **contracts** : List all the contracts of JCDecaux
+- **stations** : Ask for the name of the contract and list all the stations for this contract
+- **exit** : Exit the JCDecaux Console client
+- **any other command** : Give the help with all the commands 
 
 ## Extensions
 
