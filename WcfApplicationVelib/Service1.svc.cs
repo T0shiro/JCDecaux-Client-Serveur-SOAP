@@ -34,8 +34,7 @@ namespace WcfApplicationVelib
                 // Make request to the JCDecaux API
                 try
                 {
-                    var city = cityName;
-                    string response = await makeRequest($"https://api.jcdecaux.com/vls/v1/stations?contract={city}&apiKey="+API_KEY);
+                    string response = await makeRequest($"https://api.jcdecaux.com/vls/v1/stations?contract={cityName}&apiKey="+API_KEY);
                     System.Diagnostics.Debug.WriteLine("[LOG] Request performed for the contract " + cityName);
                     stations = JsonConvert.DeserializeObject<List<Station>>(response);
                     DateTime now = DateTime.Now;
