@@ -2,6 +2,9 @@
 
 An intermediary Web service (IWS) between the Velib WS and some WS client
 
+Author : [Loïc Gardaire](mailto:loic.gardaire@etu.unice.fr)
+Subject : [REST and SOAP WS Lab](http://www.tigli.fr/doku.php?id=cours:ws-rest_and_ws-soap:lab)
+
 ## Project structure
 
 This project has three different parts :
