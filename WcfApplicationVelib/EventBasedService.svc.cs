@@ -22,13 +22,11 @@ namespace WcfApplicationVelib
         public void UpdateData(string name)
         {
             Service1 service = new Service1();
-            Console.WriteLine("Test1");
             List<Station> stations = service.GetStationsOfContractNamedSync(name);
-            Console.WriteLine("Test2");
             List<string> result = new List<string>();
             foreach(Station station in stations)
             {
-                result.Add(station.name + " : available bikes " + station.available_bikes);
+                result.Add("    - "+station.name + " : available bikes " + station.available_bikes);
             }
             m_Event1(result);
         }
