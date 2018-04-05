@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8afbc7a8-9e66-4fdc-9b3b-c82d8474e427" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:61817/EventBasedService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EventBasedService.xsd" MetadataType="Schema" ID="46519db7-eb37-44e6-a1b2-718d7397e66f" SourceId="1" SourceUrl="http://localhost:61817/EventBasedService.svc?xsd=xsd1" />
+    <MetadataFile FileName="EventBasedService1.xsd" MetadataType="Schema" ID="2cc3afd1-4d9c-4025-b2cb-c5acbdd9e95b" SourceId="1" SourceUrl="http://localhost:61817/EventBasedService.svc?xsd=xsd0" />
+    <MetadataFile FileName="EventBasedService.wsdl" MetadataType="Wsdl" ID="7a0b8524-557c-4c45-a792-2295798c7f03" SourceId="1" SourceUrl="http://localhost:61817/EventBasedService.svc?wsdl" />
+    <MetadataFile FileName="EventBasedService.disco" MetadataType="Disco" ID="bda24a7f-fbfc-4aef-9918-433613bf2de5" SourceId="1" SourceUrl="http://localhost:61817/EventBasedService.svc?disco" />
+    <MetadataFile FileName="EventBasedService2.xsd" MetadataType="Schema" ID="e7ac244f-2dad-4c5f-b2b7-65afe40d1939" SourceId="1" SourceUrl="http://localhost:61817/EventBasedService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

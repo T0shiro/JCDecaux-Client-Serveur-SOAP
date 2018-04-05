@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="2K3j97a7mZFjaHi84tsdADnqA3Y=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="tmWmF2mAtHMazxQwhitNRb7xmpo=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="wsDualHttpBinding" name="WSDualHttpBinding_IService1">
+    <bindingConfiguration bindingType="wsDualHttpBinding" name="WSDualHttpBinding_IEventBasedService">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WSDualHttpBinding_IService1</serializedValue>
+          <serializedValue>WSDualHttpBinding_IEventBasedService</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -97,10 +97,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSDualHttpBinding_IService1" contract="ServiceJCDecauxReference.IService1" bindingType="wsDualHttpBinding" address="http://localhost:61817/Service1.svc" bindingConfiguration="WSDualHttpBinding_IService1">
+    <endpoint name="WSDualHttpBinding_IEventBasedService" contract="ServiceReference1.IEventBasedService" bindingType="wsDualHttpBinding" address="http://localhost:61817/EventBasedService.svc" bindingConfiguration="WSDualHttpBinding_IEventBasedService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:61817/Service1.svc</serializedValue>
+          <serializedValue>http://localhost:61817/EventBasedService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -109,10 +109,10 @@
           <serializedValue>wsDualHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WSDualHttpBinding_IService1</serializedValue>
+          <serializedValue>WSDualHttpBinding_IEventBasedService</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceJCDecauxReference.IService1</serializedValue>
+          <serializedValue>ServiceReference1.IEventBasedService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -172,7 +172,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WSDualHttpBinding_IService1</serializedValue>
+          <serializedValue>WSDualHttpBinding_IEventBasedService</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

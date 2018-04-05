@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="2K3j97a7mZFjaHi84tsdADnqA3Y=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="PYSbbzT3le5NXeNjKUAMfpw3YTw=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsDualHttpBinding" name="WSDualHttpBinding_IService1">
       <properties>
@@ -97,7 +97,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSDualHttpBinding_IService1" contract="ServiceJCDecauxReference.IService1" bindingType="wsDualHttpBinding" address="http://localhost:61817/Service1.svc" bindingConfiguration="WSDualHttpBinding_IService1">
+    <endpoint name="WSDualHttpBinding_IService1" contract="ServiceReferenceJCDecaux.IService1" bindingType="wsDualHttpBinding" address="http://localhost:61817/Service1.svc" bindingConfiguration="WSDualHttpBinding_IService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:61817/Service1.svc</serializedValue>
@@ -112,7 +112,7 @@
           <serializedValue>WSDualHttpBinding_IService1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceJCDecauxReference.IService1</serializedValue>
+          <serializedValue>ServiceReferenceJCDecaux.IService1</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
